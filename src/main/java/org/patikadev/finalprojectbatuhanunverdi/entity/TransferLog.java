@@ -20,6 +20,7 @@ public class TransferLog {
     private Long id;
     private String senderIBan;
     private String receiverIBan;
+    private String receiverName;
     @Temporal(TemporalType.TIMESTAMP)
     private Date sendingTime;
     private BigDecimal balance;

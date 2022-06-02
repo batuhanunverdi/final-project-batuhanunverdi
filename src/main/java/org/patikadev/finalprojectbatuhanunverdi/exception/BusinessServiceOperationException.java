@@ -52,4 +52,23 @@ public class BusinessServiceOperationException {
             super(message);
         }
     }
+
+    public static class CardNotFound extends BaseException {
+        public CardNotFound(String message) {
+            super(message);
+        }
+    }
+
+    public static class WrongPasswordException extends BaseException {
+        public WrongPasswordException(String message) {
+            super(message);
+
+        }
+    }
+
+    public static class AccountFoundException extends BaseException {
+        public AccountFoundException(String message) {
+            super(message);
+        }
+    }
 }

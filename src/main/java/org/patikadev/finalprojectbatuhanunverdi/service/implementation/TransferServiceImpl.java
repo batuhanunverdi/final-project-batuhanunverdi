@@ -2,19 +2,23 @@ package org.patikadev.finalprojectbatuhanunverdi.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.patikadev.finalprojectbatuhanunverdi.entity.Account;
+import org.patikadev.finalprojectbatuhanunverdi.entity.Card;
 import org.patikadev.finalprojectbatuhanunverdi.entity.TransferLog;
 import org.patikadev.finalprojectbatuhanunverdi.entity.enums.AccountCurrency;
 import org.patikadev.finalprojectbatuhanunverdi.entity.enums.AccountType;
+import org.patikadev.finalprojectbatuhanunverdi.entity.enums.CardType;
 import org.patikadev.finalprojectbatuhanunverdi.exception.BusinessServiceOperationException;
 import org.patikadev.finalprojectbatuhanunverdi.model.ExchangeModel;
+import org.patikadev.finalprojectbatuhanunverdi.model.request.PaymentRequest;
 import org.patikadev.finalprojectbatuhanunverdi.repository.AccountRepository;
+import org.patikadev.finalprojectbatuhanunverdi.repository.CardRepository;
 import org.patikadev.finalprojectbatuhanunverdi.repository.TransferLogRepository;
 import org.patikadev.finalprojectbatuhanunverdi.service.TransferService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Date;
-
+import java.util.Optional;
 
 
 /**
@@ -27,6 +31,7 @@ public class TransferServiceImpl implements TransferService {
     private final AccountRepository accountRepository;
     private final TransferLogRepository transferLogRepository;
 
+    private final CardRepository cardRepository;
     private final ExchangeServiceImpl exchangeService;
     @Override
     public void moneyTransferControl(String sender, String receiver, BigDecimal balance) throws NoSuchFieldException {
@@ -46,7 +51,7 @@ public class TransferServiceImpl implements TransferService {
         }
     }
 
-    public void moneyTransfer(Account senderAccount,Account receiverAccount,BigDecimal balance) throws NoSuchFieldException {
+    public void moneyTransfer(Account senderAccount,Account receiverAccount,BigDecimal balance) {
         if (senderAccount.getBalance().compareTo(balance) >= 0) {
             BigDecimal newBalance = senderAccount.getBalance().subtract(balance);
             senderAccount.setBalance(newBalance);
@@ -66,10 +71,13 @@ public class TransferServiceImpl implements TransferService {
             transferLog.setReceiverIBan(receiverAccount.getIBAN());
             transferLog.setBalance(balance);
             transferLog.setSendingTime(new Date());
+            transferLog.setReceiverName(receiverAccount.getUser().getName());
             transferLogRepository.save(transferLog);
         }
         else{
             throw new BusinessServiceOperationException.BalanceException("You dont have enough money to send");
         }
     }
+
+
 }

@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@Table
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

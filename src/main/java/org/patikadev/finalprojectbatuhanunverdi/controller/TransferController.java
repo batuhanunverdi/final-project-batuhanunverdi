@@ -25,4 +25,11 @@ public class TransferController {
                 transferRequest.getReceiverIBan(),transferRequest.getBalance());
         return ResponseEntity.ok().build();
     }
+
+//    @PostMapping("/shopping")
+//    @ApiOperation(value = "Make payment by card")
+//    public ResponseEntity<?> paymentByCard(@RequestBody PaymentRequest paymentRequest){
+//        transferService.paymentByCard(paymentRequest);
+//        return ResponseEntity.ok().build();
+//    }
 }
