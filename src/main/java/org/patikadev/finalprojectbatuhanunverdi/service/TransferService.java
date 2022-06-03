@@ -12,5 +12,6 @@ import java.math.BigDecimal;
 public interface TransferService {
 
     void moneyTransferControl(String sender, String receiver, BigDecimal balance) throws NoSuchFieldException;
+
     void moneyTransfer(Account senderAccount, Account receiverAccount, BigDecimal balance) throws NoSuchFieldException;
 }

@@ -17,11 +17,11 @@ public class CardRequestValidator {
         if (Objects.isNull(cardRequest)) {
             throw new ValidationOperationException.CardNotValidException("Card can not be null or empty");
         }
-        if(String.valueOf(cardRequest.getCardPassword()).length()!=4){
+        if (String.valueOf(cardRequest.getCardPassword()).length() != 4) {
             throw new ValidationOperationException.CardNotValidException("Card Password must be 4 digits and mus be a number");
         }
-        if(!cardRequest.getCardType().toString().equals(CardType.Debit.toString())
-                && !cardRequest.getCardType().toString().equals(CardType.Credit.toString())){
+        if (!cardRequest.getCardType().toString().equals(CardType.Debit.toString())
+                && !cardRequest.getCardType().toString().equals(CardType.Credit.toString())) {
             throw new ValidationOperationException.CardNotValidException("Card Type must be Credit or Debit");
         }
     }

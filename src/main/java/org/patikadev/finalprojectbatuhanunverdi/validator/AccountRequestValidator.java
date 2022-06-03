@@ -15,24 +15,23 @@ import java.util.Objects;
  */
 @Component
 public class AccountRequestValidator {
-    public void validate(AccountRequest accountRequest){
-        if(Objects.isNull(accountRequest)){
+    public void validate(AccountRequest accountRequest) {
+        if (Objects.isNull(accountRequest)) {
             throw new ValidationOperationException.AccountNotValid("Account can not be null or empty");
         }
-        if(!(StringUtils.hasLength(accountRequest.getAccountType().toString()))){
+        if (!(StringUtils.hasLength(accountRequest.getAccountType().toString()))) {
             throw new ValidationOperationException.AccountNotValid("Account type can not be null or empty");
         }
-        if(!(accountRequest.getAccountType().toString().equals(AccountType.Deposit.toString()))&&
-                !(accountRequest.getAccountType().toString().equals(AccountType.Checking.toString())))
-        {
+        if (!(accountRequest.getAccountType().toString().equals(AccountType.Deposit.toString())) &&
+                !(accountRequest.getAccountType().toString().equals(AccountType.Checking.toString()))) {
             throw new ValidationOperationException.AccountNotValid("Account type should be DemandDeposit or Accumulation");
         }
-        if(!(StringUtils.hasLength(accountRequest.getAccountCurrency().toString()))){
+        if (!(StringUtils.hasLength(accountRequest.getAccountCurrency().toString()))) {
             throw new ValidationOperationException.AccountNotValid("Account currency can not be null or empty");
         }
-        if(!(accountRequest.getAccountCurrency().toString().equals(AccountCurrency.TRY.toString()))&&
-                !(accountRequest.getAccountCurrency().toString().equals(AccountCurrency.EUR.toString()))&&
-                !(accountRequest.getAccountCurrency().toString().equals(AccountCurrency.USD.toString()))){
+        if (!(accountRequest.getAccountCurrency().toString().equals(AccountCurrency.TRY.toString())) &&
+                !(accountRequest.getAccountCurrency().toString().equals(AccountCurrency.EUR.toString())) &&
+                !(accountRequest.getAccountCurrency().toString().equals(AccountCurrency.USD.toString()))) {
             throw new ValidationOperationException.AccountNotValid("Account Currency should be EUR, USD or TRY");
         }
 

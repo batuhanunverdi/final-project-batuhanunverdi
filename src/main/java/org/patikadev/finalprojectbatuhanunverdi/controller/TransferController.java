@@ -18,18 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "Transfer Documentation")
 public class TransferController {
     private final TransferService transferService;
+
     @PostMapping()
     @ApiOperation(value = "Transfer Money Method")
     public ResponseEntity<?> transferMoney(@RequestBody TransferRequest transferRequest) throws NoSuchFieldException {
         transferService.moneyTransferControl(transferRequest.getSenderIBan(),
-                transferRequest.getReceiverIBan(),transferRequest.getBalance());
+                transferRequest.getReceiverIBan(), transferRequest.getBalance());
         return ResponseEntity.ok().build();
     }
-
-//    @PostMapping("/shopping")
-//    @ApiOperation(value = "Make payment by card")
-//    public ResponseEntity<?> paymentByCard(@RequestBody PaymentRequest paymentRequest){
-//        transferService.paymentByCard(paymentRequest);
-//        return ResponseEntity.ok().build();
-//    }
 }

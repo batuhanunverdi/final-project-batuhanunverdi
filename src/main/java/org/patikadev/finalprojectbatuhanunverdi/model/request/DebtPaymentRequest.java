@@ -2,7 +2,7 @@ package org.patikadev.finalprojectbatuhanunverdi.model.request;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.patikadev.finalprojectbatuhanunverdi.entity.enums.AccountCurrency;
+import org.patikadev.finalprojectbatuhanunverdi.entity.Account;
 
 import java.math.BigDecimal;
 
@@ -12,9 +12,9 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
-public class DepositRequest {
-    private String cardNumber;
-    private int cardPassword;
+public class DebtPaymentRequest {
+    private Long senderAccount;
+    private Long receiverAccount;
     private BigDecimal amount;
-    private AccountCurrency currency;
+
 }

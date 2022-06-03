@@ -36,10 +36,10 @@ public class User {
     private Date DOB;
     @Column(unique = true)
     private String phoneNumber;
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Account> account = new HashSet<>();
 
-    public void lockUser(){
+    public void lockUser() {
         this.userStatus = UserStatus.LOCKED;
     }
 

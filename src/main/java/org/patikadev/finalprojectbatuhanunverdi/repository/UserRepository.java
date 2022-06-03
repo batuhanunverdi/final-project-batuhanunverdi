@@ -9,8 +9,9 @@ import java.util.Optional;
  * @author Mert Batuhan UNVERDI
  * @since 16.05.2022
  */
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByTc(String tc);
+
     Optional<User> findByPhoneNumber(String phoneNumber);
 
 }

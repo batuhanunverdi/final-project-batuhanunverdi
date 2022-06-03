@@ -25,21 +25,21 @@ public class AccountController {
 
     @PostMapping("/create")
     @ApiOperation(value = "New Account adding method")
-    public ResponseEntity<?> createAccount(@RequestBody AccountRequest accountRequest){
+    public ResponseEntity<?> createAccount(@RequestBody AccountRequest accountRequest) {
         accountValidator.validate(accountRequest);
         accountService.createAccount(accountRequest);
         return ResponseEntity.ok().build();
     }
+
     @DeleteMapping("/delete/{iBan}")
     @ApiOperation(value = "Delete Account by IBAN method")
-    public ResponseEntity<?> deleteAccount(@PathVariable String iBan){
+    public ResponseEntity<?> deleteAccount(@PathVariable String iBan) {
         accountService.deleteAccount(iBan);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/getCurrency/{baseCurrency}")
-    public ResponseEntity<?> getCurrency(@PathVariable String baseCurrency)
-    {
+    public ResponseEntity<?> getCurrency(@PathVariable String baseCurrency) {
         return exchangeService.getExchangeByBaseCurrency(baseCurrency);
     }
 }

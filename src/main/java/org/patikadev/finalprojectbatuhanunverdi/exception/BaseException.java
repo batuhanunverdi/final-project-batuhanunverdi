@@ -4,7 +4,7 @@ package org.patikadev.finalprojectbatuhanunverdi.exception;
  * @author Mert Batuhan UNVERDI
  * @since 18.05.2022
  */
-public class BaseException extends RuntimeException{
+public class BaseException extends RuntimeException {
     private final String message;
 
     public BaseException(String message) {

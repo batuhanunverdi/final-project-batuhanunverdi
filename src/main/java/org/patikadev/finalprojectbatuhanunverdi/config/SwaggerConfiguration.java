@@ -26,14 +26,14 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiEndPointsInfo());
-
     }
+
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Mert Batuhan ÜNVERDİ")
-                .description("Money Transfer Api Documentation")
+                .description("Online Bank Management Api Documentation")
                 .contact(new Contact("Mert Batuhan ÜNVERDİ", "", ""))
                 .license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.12.3")
                 .build();
     }

@@ -31,18 +31,18 @@ public class JWTHelper {
     @Value("${fpb.jwt.expires-in}")
     private Long expiresIn;
 
-    public String generate(String tc){
-        if(!StringUtils.hasLength(tc)){
+    public String generate(String tc) {
+        if (!StringUtils.hasLength(tc)) {
             throw new IllegalArgumentException("TC can not be null or empty");
         }
         return JWT.create().withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis()+ expiresIn))
-                .withClaim("username",tc)
+                .withExpiresAt(new Date(System.currentTimeMillis() + expiresIn))
+                .withClaim("username", tc)
                 .sign(Algorithm.HMAC512(secretKey));
     }
 
-    public String findByUsername(String token){
-        if(!StringUtils.hasLength(token)){
+    public String findByUsername(String token) {
+        if (!StringUtils.hasLength(token)) {
             throw new IllegalArgumentException("TC can not be null or empty");
         }
         return JWT.decode(token).getClaim("username").asString();
@@ -56,7 +56,8 @@ public class JWTHelper {
             return true;
         } catch (AlgorithmMismatchException algorithmMismatchException) {
             log.error("JWT Token AlgorithmMismatchException occurred!");
-        } catch (SignatureVerificationException signatureVerificationException) {
+        } catch (
+                SignatureVerificationException signatureVerificationException) {
             log.error("JWT Token SignatureVerificationException occurred!");
         } catch (TokenExpiredException tokenExpiredException) {
             log.error("JWT Token TokenExpiredException occurred!");

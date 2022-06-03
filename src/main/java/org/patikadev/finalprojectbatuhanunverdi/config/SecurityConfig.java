@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html/**",
             "/webjars/**"
     };
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -58,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationRequestValidator authenticationRequestValidator(){
+    public AuthenticationRequestValidator authenticationRequestValidator() {
         return new AuthenticationRequestValidator();
     }
 

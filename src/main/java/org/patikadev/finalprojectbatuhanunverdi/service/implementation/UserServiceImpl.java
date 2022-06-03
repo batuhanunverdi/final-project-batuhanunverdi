@@ -26,33 +26,35 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final AccountRepository accountRepository;
+
     @Override
     public void addUser(UserRequest userRequest) {
-        User user =userConverter.toUser(userRequest);
-        if(userRepository.findByTc(user.getTc()).isPresent()){
+        User user = userConverter.toUser(userRequest);
+        if (userRepository.findByTc(user.getTc()).isPresent()) {
             throw new BusinessServiceOperationException.UserAlreadyHaveException("This user is already registered in our service");
         }
-        if(userRepository.findByTc(user.getEmail()).isPresent()){
+        if (userRepository.findByTc(user.getEmail()).isPresent()) {
             throw new BusinessServiceOperationException.UserAlreadyHaveException("This email is already registered in our service");
         }
-        if(userRepository.findByPhoneNumber(user.getPhoneNumber()).isPresent()){
+        if (userRepository.findByPhoneNumber(user.getPhoneNumber()).isPresent()) {
             throw new BusinessServiceOperationException.UserAlreadyHaveException("This user is already registered in our service");
         }
         userRepository.save(user);
 
     }
+
     @Override
     public void updateUser(Long id, UserRequest userRequest) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new BusinessServiceOperationException.UserNotFound("Customer not found"));
-        if(!user.getEmail().equals(userRequest.getEmail())){
+        if (!user.getEmail().equals(userRequest.getEmail())) {
             user.setEmail(userRequest.getEmail());
         }
-        if(!user.getPhoneNumber().equals(userRequest.getPhoneNumber())){
+        if (!user.getPhoneNumber().equals(userRequest.getPhoneNumber())) {
             user.setPhoneNumber(userRequest.getPhoneNumber());
         }
-        if(!passwordEncoder.matches(user.getPassword(), user.getPassword())){
+        if (!passwordEncoder.matches(user.getPassword(), user.getPassword())) {
             user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         }
         user.setName(userRequest.getName());
@@ -63,27 +65,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         User user = userRepository.getById(id);
-        if(accountRepository.findByUser(user).isEmpty()){
+        if (accountRepository.findByUser(user).isEmpty()) {
             userRepository.deleteById(id);
-        }
-        else{
+        } else {
             List<Account> accounts = accountRepository.findByUser(user).stream().toList();
-            for (Account account : accounts){
+            for (Account account : accounts) {
                 if (account.getBalance().compareTo(BigDecimal.ZERO) > 0) {
                     throw new BusinessServiceOperationException.AccountHasMoneyException("You have money in this account. " +
                             "You cant delete this account without withdrawing the money");
-                }
-                else if (account.getBalance().compareTo(BigDecimal.ZERO)<0){
+                } else if (account.getBalance().compareTo(BigDecimal.ZERO) < 0) {
                     throw new BusinessServiceOperationException.AccountHasDebtException("Your account has debt");
                 }
             }
             userRepository.deleteById(id);
         }
-    }
-
-    @Override
-    public User getUserByTc(String tc) {
-        return userRepository.findByTc(tc).orElseThrow(()
-                -> new BusinessServiceOperationException.UserNotFound("User Not Found"));
     }
 }

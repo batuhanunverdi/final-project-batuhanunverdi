@@ -22,16 +22,15 @@ public class Rates {
     private double EUR;
 
     public BigDecimal exchangeValueByReceiverCurrency(String currency) {
-        if(currency.equals("EUR")){
+        if (currency.equals("EUR")) {
             return BigDecimal.valueOf(getEUR());
         }
-        if(currency.equals("USD")){
+        if (currency.equals("USD")) {
             return BigDecimal.valueOf(getUSD());
         }
-        if(currency.equals("TRY")){
+        if (currency.equals("TRY")) {
             return BigDecimal.valueOf(getTRY());
-        }
-        else{
+        } else {
             throw new BusinessServiceOperationException.ExchangeNotFound("Exchange type not found");
         }
     }

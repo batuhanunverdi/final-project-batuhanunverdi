@@ -10,7 +10,8 @@ import java.util.Optional;
  * @author Mert Batuhan UNVERDI
  * @since 2.06.2022
  */
-public interface CardRepository extends JpaRepository<Card,Long> {
+public interface CardRepository extends JpaRepository<Card, Long> {
     Optional<Card> findByCardNumber(String cardNumber);
+
     Optional<Card> findByAccount(Account account);
 }

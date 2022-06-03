@@ -12,15 +12,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserConverter {
 
-    public User toUser(UserRequest userRequest){
+    public User toUser(UserRequest userRequest) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = new User();
-            user.setEmail(userRequest.getEmail());
-            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-            user.setTc(userRequest.getTc());
-            user.setDOB(userRequest.getDOB());
-            user.setName(userRequest.getName());
-            user.setPhoneNumber(userRequest.getPhoneNumber());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        user.setTc(userRequest.getTc());
+        user.setDOB(userRequest.getDOB());
+        user.setName(userRequest.getName());
+        user.setPhoneNumber(userRequest.getPhoneNumber());
         return user;
     }
 }

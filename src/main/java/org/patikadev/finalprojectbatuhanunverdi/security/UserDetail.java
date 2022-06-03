@@ -13,9 +13,10 @@ import java.util.Collection;
  */
 @RequiredArgsConstructor
 public class UserDetail implements UserDetails {
-        private final String username;
+    private final String username;
     private final String password;
     private final UserStatus userStatus;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

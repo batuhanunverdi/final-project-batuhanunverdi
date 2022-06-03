@@ -8,5 +8,6 @@ import org.patikadev.finalprojectbatuhanunverdi.model.request.AccountRequest;
  */
 public interface AccountService {
     void createAccount(AccountRequest accountRequest);
+
     void deleteAccount(String IBan);
 }

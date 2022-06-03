@@ -42,12 +42,12 @@ public class AuthenticationController {
                 (new UsernamePasswordAuthenticationToken(authenticationRequest.getTc(), authenticationRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtHelper.generate(authenticationRequest.getTc());
-        return ResponseEntity.ok(new AuthenticationResponse(token,authentication.getName()));
+        return ResponseEntity.ok(new AuthenticationResponse(token, authentication.getName()));
     }
 
     @PostMapping(path = "/sign-up")
     @ApiOperation(value = "User Login method")
-    public ResponseEntity<?> signUp(@RequestBody UserRequest userRequest){
+    public ResponseEntity<?> signUp(@RequestBody UserRequest userRequest) {
         userRequestValidator.validate(userRequest);
         userService.addUser(userRequest);
         return ResponseEntity.ok().build();

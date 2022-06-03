@@ -5,5 +5,5 @@ package org.patikadev.finalprojectbatuhanunverdi.entity.enums;
  * @since 2.06.2022
  */
 public enum CardType {
-    Debit,Credit
+    Debit, Credit
 }

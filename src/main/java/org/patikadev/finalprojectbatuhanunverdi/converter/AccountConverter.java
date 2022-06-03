@@ -21,16 +21,17 @@ import java.util.Random;
 public class AccountConverter {
     private final UserRepository userRepository;
     private final JWTHelper jwtHelper;
-    public Account toAccount(AccountRequest accountRequest){
+
+    public Account toAccount(AccountRequest accountRequest) {
 
         Account account = new Account();
         Optional<User> user = userRepository.findByTc(jwtHelper.findByUsername(accountRequest.getToken()));
         Random random = new Random();
-        String randomIban = String.valueOf(random.nextInt(999999)).replace(".","");
+        String randomIban = String.valueOf(random.nextInt(999999)).replace(".", "");
         account.setAccountCurrency(accountRequest.getAccountCurrency());
         account.setUser(user.get());
         account.setAccountType(accountRequest.getAccountType());
-        account.setIBAN("TR "+ randomIban);
+        account.setIBAN("TR " + randomIban);
         account.setBalance(BigDecimal.ZERO);
         return account;
 

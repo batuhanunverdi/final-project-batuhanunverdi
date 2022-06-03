@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class BaseControllerAdvice {
-    @ResponseStatus(value= HttpStatus.BAD_REQUEST)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<?> onConstraintViolationException(ConstraintViolationException constraintViolationException){
+    public ResponseEntity<?> onConstraintViolationException(ConstraintViolationException constraintViolationException) {
         return ResponseEntity.badRequest().body(constraintViolationException.getMessage());
     }
-    @ResponseStatus(value=HttpStatus.BAD_REQUEST)
+
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidFormatException.class)
-    public ResponseEntity<?> onInvalidFormatException(InvalidFormatException invalidFormatException){
+    public ResponseEntity<?> onInvalidFormatException(InvalidFormatException invalidFormatException) {
         return ResponseEntity.badRequest().body(invalidFormatException.getMessage());
     }
+
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<?> onBaseExceptionHandled(BaseException baseException) {

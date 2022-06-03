@@ -24,15 +24,15 @@ public class UserController {
 
     @PutMapping(path = "/update-user/{id}")
     @ApiOperation(value = "Update User method")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserRequest userRequest){
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserRequest userRequest) {
         userRequestValidator.validate(userRequest);
-        userService.updateUser(id,userRequest);
+        userService.updateUser(id, userRequest);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/delete-user/{id}")
     @ApiOperation(value = "Delete User Method")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id){
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }

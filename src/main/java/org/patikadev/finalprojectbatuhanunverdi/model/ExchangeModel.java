@@ -2,6 +2,7 @@ package org.patikadev.finalprojectbatuhanunverdi.model;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import java.sql.Timestamp;
 
 /**
@@ -11,10 +12,8 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class ExchangeModel {
-   private String base;
-   private Rates rates;
-   private boolean success;
-   private Timestamp timestamp;
-
-
+    private String base;
+    private Rates rates;
+    private boolean success;
+    private Timestamp timestamp;
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
  * @author Mert Batuhan UNVERDI
  * @since 18.05.2022
  */
-public interface AccountRepository extends JpaRepository<Account,Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
     Optional<Account> findByIBAN(String iBan);
 

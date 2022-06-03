@@ -10,9 +10,8 @@ import org.patikadev.finalprojectbatuhanunverdi.model.request.UserRequest;
 public interface UserService {
     void addUser(UserRequest userRequest);
 
-    void updateUser(Long id,UserRequest userRequest);
+    void updateUser(Long id, UserRequest userRequest);
 
     void deleteUser(Long id);
 
-    User getUserByTc(String tc);
 }

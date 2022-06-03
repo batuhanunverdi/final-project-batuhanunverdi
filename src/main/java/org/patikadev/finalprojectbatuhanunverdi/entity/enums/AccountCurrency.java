@@ -5,5 +5,5 @@ package org.patikadev.finalprojectbatuhanunverdi.entity.enums;
  * @since 16.05.2022
  */
 public enum AccountCurrency {
-    EUR,USD,TRY
+    EUR, USD, TRY
 }
