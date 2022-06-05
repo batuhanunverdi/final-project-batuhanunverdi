@@ -1,8 +1,6 @@
 # final-project-batuhanunverdi
 # Norma Spring Boot Final Project
 
-![money transfer](money_transfer.jpg)
-
 Bu bitirme projesi kapsamında bootcamp katılımcılarının bir online bankacılık sisteminin backend servislerini yazmaları 
 beklenmektedir. Proje kapsamında beklenen minimum fonksiyonlar ve teknik ihtiyaçlar aşağıda listelenmiştir.
 
